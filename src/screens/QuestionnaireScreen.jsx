@@ -1,0 +1,45 @@
+import React from 'react';
+import Header from '../components/Header';
+
+const QuestionnaireScreen = ({ userData }) => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+      <Header overlay={true} />
+      
+      {/* Placeholder for the sleeping guy image */}
+      <img src="https://images.unsplash.com/photo-1495912999464-32049d10e6a8?q=80&w=400&h=250&auto=format&fit=crop" alt="Top Graphic" className="question-header-image" />
+      
+      <div className="question-card-wrapper">
+        <div className="question-box">
+          <div className="q-badge">Q1</div>
+          Your alarm goes off at 6:00 AM. What's your first move?
+        </div>
+      </div>
+
+      <div className="options-container">
+        <div className="option-row">
+          <div className="option-badge">A</div>
+          <div className="option-text">Jump up and start prepping a solid breakfast</div>
+        </div>
+        <div className="option-row">
+          <div className="option-badge">B</div>
+          <div className="option-text">Hit snooze; I need five more minutes of peace</div>
+        </div>
+        <div className="option-row">
+          <div className="option-badge">C</div>
+          <div className="option-text">Check my emails/notifications immediately</div>
+        </div>
+        <div className="option-row">
+          <div className="option-badge">D</div>
+          <div className="option-text">Think about what I'm having for dinner tonight</div>
+        </div>
+      </div>
+
+      <div className="footer-banner">
+        <img src="/assets/homeOfGoodFood.webp" alt="The Home of Good Food banner" style={{ width: '100%', objectFit: 'contain' }} />
+      </div>
+    </div>
+  );
+};
+
+export default QuestionnaireScreen;

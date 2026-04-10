@@ -1,0 +1,297 @@
+:root {
+  --color-bg: #1c1c1c;
+  --color-green: #688e40;
+  --color-yellow: #fbbc05;
+  --color-form-label: #2c2c2c;
+  --color-white: #ffffff;
+  
+  --font-display: 'Anton', 'Impact', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #e6e9ee;
+  font-family: var(--font-body);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 440px;
+  height: 100dvh;
+  background-color: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* Typography elements */
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5px auto 0;
+  width: fit-content;
+  font-family: var(--font-display);
+  line-height: 1;
+  z-index: 10;
+  position: relative;
+  flex-shrink: 0;
+  transform: scaleY(1.1); /* Stretch slightly to match the ultra-tall font look */
+}
+
+.title-line-1 {
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: 0px;
+}
+
+.title-line-2 {
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  margin-top: -5px;
+  margin-left: 1.5rem; /* indent second line */
+}
+
+.text-green { color: var(--color-green); }
+.text-yellow { color: var(--color-yellow); }
+
+/* Header */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 24px;
+  z-index: 5;
+  flex-shrink: 0;
+}
+
+.logo-left {
+  width: 85px;
+  object-fit: contain;
+  /* Assumes the ribbon is in the image, we want it touching the top */
+  margin-top: 0;
+}
+
+.logo-right {
+  width: 130px;
+  object-fit: contain;
+  margin-top: 16px;
+}
+
+/* Hero Mask */
+.hero-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 0; /* allows flex compression */
+  width: 100%;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.hero-image {
+  width: 85%;
+  height: 100%;
+  max-width: 300px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 20px rgba(0,0,0,0.6));
+}
+
+/* Form Styles */
+.form-container {
+  padding: 10px 45px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 44px; /* Fixed height so label and input match exactly */
+}
+
+.form-label {
+  background-color: var(--color-form-label);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 0 10px;
+  border-radius: 8px 0 0 8px;
+  width: 38%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centered instead of right-aligned */
+}
+
+.form-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  height: 100%;
+  padding: 0 16px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  border-radius: 0 8px 8px 0;
+  width: 62%;
+}
+
+.form-input:focus {
+  box-shadow: inset 0 0 0 2px var(--color-yellow);
+}
+
+.btn-submit {
+  background-color: var(--color-yellow);
+  color: #000;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 40px;
+  font-weight: 700;
+  font-size: 15px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  margin: 15px auto 0;
+  display: inline-block;
+  align-self: center; /* Center horizontally in flex column */
+  transition: transform 0.1s, opacity 0.2s;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); /* Subtle depth */
+}
+
+.btn-submit:active {
+  transform: scale(0.96);
+}
+
+/* Questionnaire Specific */
+.bg-dark { background-color: var(--color-bg); }
+.bg-yellow { background-color: var(--color-yellow); }
+
+.question-header-image {
+  width: 100%;
+  height: 230px;
+  background-color: #ddd;
+  object-fit: cover;
+}
+
+.question-card-wrapper {
+  padding: 0 24px;
+  margin-top: -30px; /* Overlap image */
+  position: relative;
+  z-index: 2;
+}
+
+.question-box {
+  background: white;
+  border-radius: 8px;
+  padding: 16px 20px 20px 30px; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  position: relative;
+  font-weight: 700;
+  font-size: 16px;
+  color: black;
+  text-align: left;
+}
+
+.q-badge {
+  position: absolute;
+  top: -15px;
+  left: -20px;
+  background-color: var(--color-green);
+  color: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: var(--font-display);
+  border: 4px solid white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.options-container {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.option-row:active {
+  transform: scale(0.98);
+}
+
+.option-badge {
+  background-color: var(--color-green);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  font-weight: 900;
+  font-size: 16px;
+  font-family: var(--font-display);
+  border: 3px solid white;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.option-text {
+  background-color: white;
+  color: #222;
+  padding: 14px 15px 14px 25px; 
+  margin-left: 16px; 
+  flex: 1;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.footer-banner {
+  margin-top: auto;
+  width: 100%;
+  padding: 0 24px 20px;
+  text-align: center;
+}
+
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
