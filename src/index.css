@@ -29,7 +29,7 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 440px;
+  max-width: 100%;
   height: 100dvh;
   background-color: var(--color-bg);
   position: relative;
@@ -204,7 +204,7 @@ body {
 .question-box {
   background: white;
   border-radius: 8px;
-  padding: 16px 20px 20px 30px; 
+  padding: 16px 20px 20px 45px; /* Increased left padding to clear Q1 badge */
   box-shadow: 0 5px 15px rgba(0,0,0,0.15);
   position: relative;
   font-weight: 700;
@@ -233,7 +233,7 @@ body {
 }
 
 .options-container {
-  padding: 10px 24px;
+  padding: 10px 24px; /* Reverted to match original width */
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -273,7 +273,7 @@ body {
 .option-text {
   background-color: white;
   color: #17385c; /* Navy blue */
-  padding: 8px 10px 8px 24px; /* Slimmer vertical padding */
+  padding: 14px 10px 14px 30px; /* Increased vertical padding for height */
   margin-left: 0px; 
   width: 100%;
   border-radius: 2px; /* Sharper edges */
