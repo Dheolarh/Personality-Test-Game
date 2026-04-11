@@ -17,14 +17,21 @@
 }
 
 body {
-  background-color: #e6e9ee;
+  background-color: var(--color-bg); /* Match the primary background natively */
   font-family: var(--font-body);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   height: 100dvh;
   overflow: hidden;
-  margin: 0;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex; /* keep layout logic inside root now */
+  justify-content: center;
+  align-items: center;
 }
 
 .app-container {
