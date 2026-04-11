@@ -7,7 +7,7 @@ const QuestionnaireScreen = ({ userData }) => {
       <Header overlay={true} />
       
       {/* Placeholder for the sleeping guy image */}
-      <img src="https://images.unsplash.com/photo-1495912999464-32049d10e6a8?q=80&w=400&h=250&auto=format&fit=crop" alt="Top Graphic" className="question-header-image" />
+      <img src="https://placehold.co/400x250/cccccc/333333?text=Sleeping+Guy+Image" alt="Top Graphic" className="question-header-image" />
       
       <div className="question-card-wrapper">
         <div className="question-box">

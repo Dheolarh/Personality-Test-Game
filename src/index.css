@@ -187,7 +187,8 @@ body {
 .bg-yellow { background-color: var(--color-yellow); }
 
 .question-header-image {
-  width: 100%;
+  width: calc(100% - 40px);
+  margin: 45px 20px 0; /* Increased top margin */
   height: 230px;
   background-color: #ddd;
   object-fit: cover;
@@ -208,7 +209,7 @@ body {
   position: relative;
   font-weight: 700;
   font-size: 16px;
-  color: black;
+  color: #17385c; /* Dark navy blue from original */
   text-align: left;
 }
 
@@ -232,10 +233,10 @@ body {
 }
 
 .options-container {
-  padding: 20px 24px;
+  padding: 10px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .option-row {
@@ -253,16 +254,16 @@ body {
 .option-badge {
   background-color: var(--color-green);
   color: white;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 0;
+  left: -8px; /* Pop out to the left slightly */
   font-weight: 900;
-  font-size: 16px;
+  font-size: 14px;
   font-family: var(--font-display);
   border: 3px solid white;
   z-index: 2;
@@ -271,11 +272,11 @@ body {
 
 .option-text {
   background-color: white;
-  color: #222;
-  padding: 14px 15px 14px 25px; 
-  margin-left: 16px; 
-  flex: 1;
-  border-radius: 4px;
+  color: #17385c; /* Navy blue */
+  padding: 8px 10px 8px 24px; /* Slimmer vertical padding */
+  margin-left: 0px; 
+  width: 100%;
+  border-radius: 2px; /* Sharper edges */
   font-weight: 700;
   font-size: 13px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
