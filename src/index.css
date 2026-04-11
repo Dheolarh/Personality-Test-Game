@@ -195,7 +195,7 @@ body {
 }
 
 .question-card-wrapper {
-  padding: 0 24px;
+  padding: 0 50px; /* Increased side padding to reduce box width */
   margin-top: -30px; /* Overlap image */
   position: relative;
   z-index: 2;
@@ -233,7 +233,7 @@ body {
 }
 
 .options-container {
-  padding: 10px 24px; /* Reverted to match original width */
+  padding: 50px 24px 10px; /* increased top padding to space out from question */
   display: flex;
   flex-direction: column;
   gap: 14px;
