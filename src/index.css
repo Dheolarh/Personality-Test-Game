@@ -36,16 +36,11 @@ body {
 }
 
 .app-container {
-  width: 100%;
-  max-width: 430px;
-  /* Lock to design frame so everything scales correctly */
-  height: 100dvh;
   background-color: var(--color-bg);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Typography elements */
