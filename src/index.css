@@ -299,6 +299,7 @@ body {
   border: 3px solid white;
   z-index: 2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
 }
 
 .option-text {
@@ -314,6 +315,19 @@ body {
   font-weight: 700;
   font-size: 13px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+/* Selected State Highlights */
+.option-row.selected .option-text {
+  background-color: var(--color-green);
+  color: white;
+}
+
+.option-row.selected .option-badge {
+  background-color: white;
+  color: var(--color-green);
+  border-color: var(--color-green);
 }
 
 .footer-banner {
