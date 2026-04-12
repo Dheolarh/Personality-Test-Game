@@ -4,7 +4,7 @@
   --color-yellow: #fbbc05;
   --color-form-label: #2c2c2c;
   --color-white: #ffffff;
-  
+
   --font-display: 'Anton', 'Impact', sans-serif;
   --font-body: 'Montserrat', sans-serif;
 }
@@ -17,7 +17,8 @@
 }
 
 body {
-  background-color: var(--color-bg); /* Match the primary background natively */
+  background-color: var(--color-bg);
+  /* Match the primary background natively */
   font-family: var(--font-body);
   margin: 0;
   padding: 0;
@@ -29,21 +30,22 @@ body {
 #root {
   width: 100%;
   height: 100%;
-  display: flex; /* keep layout logic inside root now */
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .app-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 430px;
+  /* Lock to design frame so everything scales correctly */
   height: 100dvh;
   background-color: var(--color-bg);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Typography elements */
@@ -58,7 +60,8 @@ body {
   z-index: 10;
   position: relative;
   flex-shrink: 0;
-  transform: scaleY(1.1); /* Stretch slightly to match the ultra-tall font look */
+  transform: scaleY(1.1);
+  /* Stretch slightly to match the ultra-tall font look */
 }
 
 .title-line-1 {
@@ -72,11 +75,16 @@ body {
   font-weight: 400;
   letter-spacing: -0.5px;
   margin-top: -5px;
-  margin-left: 1.5rem; /* indent second line */
+  margin-left: 1.5rem;
 }
 
-.text-green { color: var(--color-green); }
-.text-yellow { color: var(--color-yellow); }
+.text-green {
+  color: var(--color-green);
+}
+
+.text-yellow {
+  color: var(--color-yellow);
+}
 
 /* Header */
 .header-container {
@@ -107,7 +115,8 @@ body {
   justify-content: center;
   align-items: center;
   flex: 1;
-  min-height: 0; /* allows flex compression */
+  min-height: 0;
+  /* allows flex compression */
   width: 100%;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -118,7 +127,7 @@ body {
   height: 100%;
   max-width: 300px;
   object-fit: contain;
-  filter: drop-shadow(0 20px 20px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.6));
 }
 
 /* Form Styles */
@@ -135,7 +144,8 @@ body {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 44px; /* Fixed height so label and input match exactly */
+  height: 44px;
+  /* Fixed height so label and input match exactly */
 }
 
 .form-label {
@@ -149,7 +159,8 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center; /* Centered instead of right-aligned */
+  justify-content: center;
+  /* Centered instead of right-aligned */
 }
 
 .form-input {
@@ -180,9 +191,11 @@ body {
   cursor: pointer;
   margin: 15px auto 0;
   display: inline-block;
-  align-self: center; /* Center horizontally in flex column */
+  align-self: center;
+  /* Center horizontally in flex column */
   transition: transform 0.1s, opacity 0.2s;
-  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); /* Subtle depth */
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+  /* Subtle depth */
 }
 
 .btn-submit:active {
@@ -190,20 +203,28 @@ body {
 }
 
 /* Questionnaire Specific */
-.bg-dark { background-color: var(--color-bg); }
-.bg-yellow { background-color: var(--color-yellow); }
+.bg-dark {
+  background-color: var(--color-bg);
+}
+
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
 
 .question-header-image {
   width: calc(100% - 40px);
-  margin: 45px 20px 0; /* Increased top margin */
+  margin: 45px 20px 0;
+  /* Increased top margin */
   height: 230px;
   background-color: #ddd;
   object-fit: cover;
 }
 
 .question-card-wrapper {
-  padding: 0 50px; /* Increased side padding to reduce box width */
-  margin-top: -30px; /* Overlap image */
+  padding: 0 45px;
+  /* Restored side padding */
+  margin-top: -30px;
+  /* Overlap image */
   position: relative;
   z-index: 2;
 }
@@ -211,36 +232,38 @@ body {
 .question-box {
   background: white;
   border-radius: 8px;
-  padding: 16px 20px 20px 45px; /* Increased left padding to clear Q1 badge */
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  padding: 16px 20px 20px 45px;
+  /* Restored padding */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   position: relative;
   font-weight: 700;
   font-size: 16px;
-  color: #17385c; /* Dark navy blue from original */
+  color: #17385c;
   text-align: left;
 }
 
 .q-badge {
   position: absolute;
   top: -15px;
-  left: -20px;
+  left: -15px;
+  /* Shifted inwards to prevent clipping */
   background-color: var(--color-green);
   color: white;
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 900;
   font-family: var(--font-display);
   border: 4px solid white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .options-container {
-  padding: 50px 24px 10px; /* increased top padding to space out from question */
+  padding: 35px 24px 30px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -268,25 +291,29 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: -8px; /* Pop out to the left slightly */
+  left: -8px;
+  /* Pop out to the left slightly */
   font-weight: 900;
   font-size: 14px;
   font-family: var(--font-display);
   border: 3px solid white;
   z-index: 2;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .option-text {
   background-color: white;
-  color: #17385c; /* Navy blue */
-  padding: 14px 10px 14px 30px; /* Increased vertical padding for height */
-  margin-left: 0px; 
+  color: #17385c;
+  /* Navy blue */
+  padding: 14px 10px 14px 30px;
+  /* Increased vertical padding for height */
+  margin-left: 0px;
   width: 100%;
-  border-radius: 2px; /* Sharper edges */
+  border-radius: 2px;
+  /* Sharper edges */
   font-weight: 700;
   font-size: 13px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .footer-banner {

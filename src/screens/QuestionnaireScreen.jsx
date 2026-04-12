@@ -35,8 +35,8 @@ const QuestionnaireScreen = ({ userData }) => {
         </div>
       </div>
 
-      <div className="footer-banner">
-        <img src="/assets/homeOfGoodFood.webp" alt="The Home of Good Food banner" style={{ width: '100%', objectFit: 'contain' }} />
+      <div className="footer-banner" style={{ display: 'flex', justifyContent: 'center' }}>
+        <img src="/assets/homeOfGoodFood.webp" alt="The Home of Good Food banner" style={{ width: '90%', objectFit: 'contain' }} />
       </div>
     </div>
   );
