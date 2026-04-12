@@ -17,9 +17,9 @@ const LandingScreen = ({ onStart }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Header />
-      
+
       <div className="hero-image-wrap">
-        <img src="/assets/mask.png" alt="Mask" className="hero-image" />
+        <img src="/assets/mask.webp" alt="Mask" className="hero-image" />
       </div>
 
       <div className="title-container">
@@ -34,37 +34,37 @@ const LandingScreen = ({ onStart }) => {
       <form className="form-container" onSubmit={handleStart}>
         <div className="form-group">
           <div className="form-label">Name</div>
-          <input 
-            type="text" 
-            name="name" 
-            className="form-input" 
-            value={formData.name} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="text"
+            name="name"
+            className="form-input"
+            value={formData.name}
+            onChange={handleChange}
+            required
           />
         </div>
-        
+
         <div className="form-group">
           <div className="form-label">Phone No.</div>
-          <input 
-            type="tel" 
-            name="phone" 
-            className="form-input" 
-            value={formData.phone} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="tel"
+            name="phone"
+            className="form-input"
+            value={formData.phone}
+            onChange={handleChange}
+            required
           />
         </div>
-        
+
         <div className="form-group">
           <div className="form-label">Location</div>
-          <input 
-            type="text" 
-            name="location" 
-            className="form-input" 
-            value={formData.location} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="text"
+            name="location"
+            className="form-input"
+            value={formData.location}
+            onChange={handleChange}
+            required
           />
         </div>
 
