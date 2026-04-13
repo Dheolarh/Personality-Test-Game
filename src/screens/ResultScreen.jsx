@@ -4,13 +4,21 @@ import ConfettiExplosion from 'react-confetti-explosion';
 
 function ResultScreen({ userData, answers }) {
   const [isExploding, setIsExploding] = useState(false);
+  const [confettiKey, setConfettiKey] = useState(0);
+
+  const fireConfetti = () => {
+    // Re-trigger explosion
+    setIsExploding(false);
+    setTimeout(() => {
+      setConfettiKey(prev => prev + 1);
+      setIsExploding(true);
+      const audio = new Audio('/assets/sound/confetti sfx.mp3');
+      audio.play().catch(e => console.log('Audio play failed:', e));
+    }, 50);
+  };
 
   useEffect(() => {
-    setIsExploding(true);
-    
-    // Play confetti sound
-    const audio = new Audio('/assets/sound/confetti sfx.mp3');
-    audio.play().catch(e => console.log("Audio play failed:", e));
+    fireConfetti();
   }, []);
 
   const resultTrait = useMemo(() => {
@@ -43,33 +51,50 @@ function ResultScreen({ userData, answers }) {
     : null;
 
   return (
-    <div className="result-screen">
-      {isExploding && (
-        <div style={{
-          position: 'fixed', // Pin to viewport center
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          zIndex: 200 // Ensure it's above the image
-        }}>
-          <ConfettiExplosion
-            force={0.8}
-            duration={3000}
-            particleCount={250}
-            width={1600}
-            colors={['#fbbc05', '#688e40', '#ffffff', '#17385c']}
+    <>
+      <div className="result-screen">
+        {imageFilename && (
+          <img
+            src={imageFilename}
+            alt={`${resultTrait} Result`}
+            className="result-image"
           />
-        </div>
-      )}
+        )}
+      </div>
 
-      {imageFilename && (
-        <img
-          src={imageFilename}
-          alt={`${resultTrait} Result`}
-          className="result-image"
+      {isExploding && (
+        <ConfettiExplosion
+          key={confettiKey}
+          force={0.8}
+          duration={3000}
+          particleCount={250}
+          width={1600}
+          zIndex={99999}
+          colors={['#fbbc05', '#688e40', '#ffffff', '#17385c']}
         />
       )}
-    </div>
+
+      <button
+        onClick={fireConfetti}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          zIndex: 100000,
+          padding: '12px 20px',
+          background: '#fbbc05',
+          color: '#000',
+          border: 'none',
+          borderRadius: '50px',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+          cursor: 'pointer'
+        }}
+      >
+        🎉 Test Blast
+      </button>
+    </>
   );
 }
 
