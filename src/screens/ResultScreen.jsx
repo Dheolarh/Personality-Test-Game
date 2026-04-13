@@ -74,26 +74,6 @@ function ResultScreen({ userData, answers }) {
         />
       )}
 
-      <button
-        onClick={fireConfetti}
-        style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          zIndex: 100000,
-          padding: '12px 20px',
-          background: '#fbbc05',
-          color: '#000',
-          border: 'none',
-          borderRadius: '50px',
-          fontWeight: 'bold',
-          fontSize: '14px',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-          cursor: 'pointer'
-        }}
-      >
-        🎉 Test Blast
-      </button>
     </>
   );
 }
