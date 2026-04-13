@@ -41,9 +41,24 @@ function ResultScreen({ userData, answers }) {
     : null;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#1c1c1c', position: 'relative', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ 
+      position: 'fixed', 
+      top: 0, 
+      left: 0, 
+      width: '100vw', 
+      height: '100dvh', 
+      backgroundColor: '#1c1c1c',
+      zIndex: 1000,
+      overflow: 'hidden'
+    }}>
       {isExploding && (
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+        <div style={{ 
+          position: 'absolute', 
+          top: '50%', 
+          left: '50%', 
+          transform: 'translate(-50%, -50%)', 
+          zIndex: 10 
+        }}>
           <ConfettiExplosion 
             force={0.8}
             duration={3000}
@@ -58,7 +73,12 @@ function ResultScreen({ userData, answers }) {
         <img 
           src={imageFilename} 
           alt={`${resultTrait} Result`} 
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover',
+            display: 'block'
+          }} 
         />
       )}
     </div>

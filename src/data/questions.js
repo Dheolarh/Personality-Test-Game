@@ -110,3 +110,11 @@ export const questionsData = [
     ]
   }
 ];
+
+export const resultImages = [
+  "/assets/results/EarlyAchiever.webp",
+  "/assets/results/OntheGoHustler.webp",
+  "/assets/results/ComfortSeeker.webp",
+  "/assets/results/NostalgicTraditionalist.webp",
+  "/assets/results/CulinaryAlchemist.webp"
+];
