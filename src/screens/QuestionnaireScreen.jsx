@@ -29,7 +29,7 @@ const QuestionnaireScreen = ({ userData, onComplete }) => {
   const currentQ = questionsData[currentQuestionIndex];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       {/* Dynamic image based on active question */}
       <img src={currentQ.image} alt={`Q${currentQ.id} Header Photo`} className="question-header-image" />
       

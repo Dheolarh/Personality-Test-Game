@@ -229,12 +229,13 @@ body {
 }
 
 .question-header-image {
-  width: calc(100% - 40px);
-  margin: 45px 20px 0;
-  /* Increased top margin */
-  height: 230px;
-  background-color: #ddd;
+  width: calc(100% - 60px);
+  margin: 40px auto 0;
+  height: 240px;
+  background-color: transparent;
   object-fit: cover;
+  display: block;
+  border-radius: 4px;
 }
 
 .question-card-wrapper {
@@ -250,9 +251,9 @@ body {
   background: white;
   border-radius: 8px;
   padding: 16px 20px 20px 45px;
-  /* Restored padding */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   position: relative;
+  margin: 0 10px;
   font-family: var(--font-gotham);
   font-weight: 900;
   font-size: 16px;
@@ -288,10 +289,11 @@ body {
 
 .option-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   cursor: pointer;
   transition: transform 0.1s;
+  margin-top: 10px;
 }
 
 .option-row:active {
@@ -301,15 +303,16 @@ body {
 .option-badge {
   background-color: var(--color-green);
   color: white;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: -8px;
-  /* Pop out to the left slightly */
+  top: -12px;
+  left: -12px;
+  /* Shifted to top left */
   font-size: 14px;
   font-family: var(--font-newake);
   border: 3px solid white;
