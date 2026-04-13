@@ -12,9 +12,8 @@ function ResultScreen({ userData, answers }) {
   const resultTrait = useMemo(() => {
     const tally = {};
     let maxCount = 0;
-    let firstToReachMax = "Unknown";
+    let firstToReachMax = 'Unknown';
 
-    // Sort the keys so we process them chronologically (1..10)
     const sortedQIds = Object.keys(answers || {}).map(Number).sort((a, b) => a - b);
 
     sortedQIds.forEach(qId => {
@@ -24,7 +23,6 @@ function ResultScreen({ userData, answers }) {
         const option = question.options.find(opt => opt.id === optionId);
         if (option && option.trait) {
           tally[option.trait] = (tally[option.trait] || 0) + 1;
-          
           if (tally[option.trait] > maxCount) {
             maxCount = tally[option.trait];
             firstToReachMax = option.trait;
@@ -36,27 +34,21 @@ function ResultScreen({ userData, answers }) {
     return firstToReachMax;
   }, [answers]);
 
-  const imageFilename = resultTrait !== "Unknown" 
+  const imageFilename = resultTrait !== 'Unknown'
     ? `/assets/results/${resultTrait.replace(/\s+/g, '')}.webp`
     : null;
 
   return (
-    <div style={{ 
-      width: '100%', 
-      height: '100%', 
-      backgroundColor: '#1c1c1c',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
+    <div className="result-screen">
       {isExploding && (
-        <div style={{ 
-          position: 'absolute', 
-          top: '50%', 
-          left: '50%', 
-          transform: 'translate(-50%, -50%)', 
-          zIndex: 10 
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 10
         }}>
-          <ConfettiExplosion 
+          <ConfettiExplosion
             force={0.8}
             duration={3000}
             particleCount={250}
@@ -65,17 +57,12 @@ function ResultScreen({ userData, answers }) {
           />
         </div>
       )}
-      
+
       {imageFilename && (
-        <img 
-          src={imageFilename} 
-          alt={`${resultTrait} Result`} 
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover',
-            display: 'block'
-          }} 
+        <img
+          src={imageFilename}
+          alt={`${resultTrait} Result`}
+          className="result-image"
         />
       )}
     </div>

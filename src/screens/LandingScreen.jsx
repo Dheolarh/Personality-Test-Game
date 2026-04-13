@@ -9,34 +9,22 @@ const LandingScreen = ({ onStart }) => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (errorMsg) setErrorMsg(''); // Clear error when typing
+    if (errorMsg) setErrorMsg('');
   };
 
   const handleStart = async (e) => {
     e.preventDefault();
 
-    // Check for empty fields
-    if (!formData.name) {
-      setErrorMsg('Please enter your full name.');
-      return;
-    }
-    if (!formData.phone) {
-      setErrorMsg('Please enter your phone number.');
-      return;
-    }
-    if (!formData.location) {
-      setErrorMsg('Please enter your location.');
-      return;
-    }
+    if (!formData.name) { setErrorMsg('Please enter your full name.'); return; }
+    if (!formData.phone) { setErrorMsg('Please enter your phone number.'); return; }
+    if (!formData.location) { setErrorMsg('Please enter your location.'); return; }
 
-    // Name regex validation
     const nameRegex = /^[a-zA-Z\s\-']+$/;
     if (!nameRegex.test(formData.name)) {
       setErrorMsg('Names should only contain letters and spaces.');
       return;
     }
 
-    // Phone length validation
     const digitsOnly = formData.phone.replace(/\D/g, '');
     if (digitsOnly.length !== 11) {
       setErrorMsg('Phone number must be exactly 11 digits (e.g., 08012345678).');
@@ -61,7 +49,7 @@ const LandingScreen = ({ onStart }) => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
+    <>
       <Header />
 
       <div className="hero-image-wrap">
@@ -124,7 +112,7 @@ const LandingScreen = ({ onStart }) => {
         </div>
 
         {errorMsg && (
-          <div style={{ color: '#ff4d4d', fontSize: '12px', textAlign: 'center', marginTop: '5px', fontWeight: 'bold' }}>
+          <div style={{ color: '#ff4d4d', fontSize: 'clamp(10px, 2.8vw, 12px)', textAlign: 'center', fontWeight: 'bold' }}>
             {errorMsg}
           </div>
         )}
@@ -133,7 +121,7 @@ const LandingScreen = ({ onStart }) => {
           {isSubmitting ? 'Registering...' : 'Discover YOU!'}
         </button>
       </form>
-    </div>
+    </>
   );
 };
 
