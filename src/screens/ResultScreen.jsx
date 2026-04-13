@@ -1,7 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { questionsData } from '../data/questions';
+import ConfettiExplosion from 'react-confetti-explosion';
 
 function ResultScreen({ userData, answers }) {
+  const [isExploding, setIsExploding] = useState(false);
+
+  useEffect(() => {
+    setIsExploding(true);
+  }, []);
+
   const resultTrait = useMemo(() => {
     const tally = {};
     let maxCount = 0;
@@ -34,7 +41,19 @@ function ResultScreen({ userData, answers }) {
     : null;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#1c1c1c' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#1c1c1c', position: 'relative', alignItems: 'center', justifyContent: 'center' }}>
+      {isExploding && (
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10 }}>
+          <ConfettiExplosion 
+            force={0.8}
+            duration={3000}
+            particleCount={250}
+            width={1600}
+            colors={['#fbbc05', '#688e40', '#ffffff', '#17385c']}
+          />
+        </div>
+      )}
+      
       {imageFilename && (
         <img 
           src={imageFilename} 
