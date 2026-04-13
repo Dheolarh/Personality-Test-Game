@@ -7,6 +7,10 @@ function ResultScreen({ userData, answers }) {
 
   useEffect(() => {
     setIsExploding(true);
+    
+    // Play confetti sound
+    const audio = new Audio('/assets/sound/confetti sfx.mp3');
+    audio.play().catch(e => console.log("Audio play failed:", e));
   }, []);
 
   const resultTrait = useMemo(() => {
@@ -42,11 +46,11 @@ function ResultScreen({ userData, answers }) {
     <div className="result-screen">
       {isExploding && (
         <div style={{
-          position: 'absolute',
+          position: 'fixed', // Pin to viewport center
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          zIndex: 10
+          zIndex: 200 // Ensure it's above the image
         }}>
           <ConfettiExplosion
             force={0.8}
