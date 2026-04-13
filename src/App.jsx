@@ -32,12 +32,15 @@ function App() {
     preloadSequentially();
   }, []);
 
-  // Lock proportion aspect-ratio scaling mapping natively
+  const [internalHeight, setInternalHeight] = useState(932);
+
+  // Lock proportion aspect-ratio scaling based on width
   useEffect(() => {
     const handleResize = () => {
       const scaleX = window.innerWidth / 430;
-      const scaleY = window.innerHeight / 932;
-      setScale(Math.min(scaleX, scaleY)); 
+      setScale(scaleX); 
+      // Calculate how many "internal pixels" high the screen is at this scale
+      setInternalHeight(window.innerHeight / scaleX);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -68,14 +71,14 @@ function App() {
     }}>
       <div className={`app-container ${bgClass}`} style={{
         width: currentScreen === 'result' ? '100vw' : '430px',
-        height: currentScreen === 'result' ? '100dvh' : '932px',
+        height: currentScreen === 'result' ? '100dvh' : `${internalHeight}px`,
         transform: currentScreen === 'result' ? 'none' : `scale(${scale})`,
-        transformOrigin: 'center center',
+        transformOrigin: 'top center', // Scale from top to fill downwards
         flexShrink: 0,
         position: currentScreen === 'result' ? 'fixed' : 'relative',
-        top: currentScreen === 'result' ? 0 : 'auto',
-        left: currentScreen === 'result' ? 0 : 'auto',
-        zIndex: currentScreen === 'result' ? 2000 : 1
+        zIndex: currentScreen === 'result' ? 2000 : 1,
+        display: 'flex',
+        flexDirection: 'column'
       }}>
         {currentScreen === 'landing' && <LandingScreen onStart={handleStartGame} />}
         {currentScreen === 'questionnaire' && <QuestionnaireScreen userData={userData} onComplete={handleQuestionnaireComplete} />}

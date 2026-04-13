@@ -61,7 +61,7 @@ const LandingScreen = ({ onStart }) => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
       <Header />
 
       <div className="hero-image-wrap">
