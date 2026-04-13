@@ -67,11 +67,15 @@ function App() {
       overflow: 'hidden'
     }}>
       <div className={`app-container ${bgClass}`} style={{
-        width: '430px',
-        height: '932px',
-        transform: `scale(${scale})`,
+        width: currentScreen === 'result' ? '100vw' : '430px',
+        height: currentScreen === 'result' ? '100dvh' : '932px',
+        transform: currentScreen === 'result' ? 'none' : `scale(${scale})`,
         transformOrigin: 'center center',
-        flexShrink: 0
+        flexShrink: 0,
+        position: currentScreen === 'result' ? 'fixed' : 'relative',
+        top: currentScreen === 'result' ? 0 : 'auto',
+        left: currentScreen === 'result' ? 0 : 'auto',
+        zIndex: currentScreen === 'result' ? 2000 : 1
       }}>
         {currentScreen === 'landing' && <LandingScreen onStart={handleStartGame} />}
         {currentScreen === 'questionnaire' && <QuestionnaireScreen userData={userData} onComplete={handleQuestionnaireComplete} />}

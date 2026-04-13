@@ -42,13 +42,10 @@ function ResultScreen({ userData, answers }) {
 
   return (
     <div style={{ 
-      position: 'fixed', 
-      top: 0, 
-      left: 0, 
-      width: '100vw', 
-      height: '100dvh', 
+      width: '100%', 
+      height: '100%', 
       backgroundColor: '#1c1c1c',
-      zIndex: 1000,
+      position: 'relative',
       overflow: 'hidden'
     }}>
       {isExploding && (
