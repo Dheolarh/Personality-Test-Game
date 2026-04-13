@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import Header from '../components/Header';
 import { questionsData } from '../data/questions';
 
 function ResultScreen({ userData, answers }) {
@@ -30,37 +29,19 @@ function ResultScreen({ userData, answers }) {
     return firstToReachMax;
   }, [answers]);
 
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', alignItems: 'center' }}>
-      <Header />
-      
-      <div style={{ color: 'white', marginTop: '40px', padding: '0 20px', textAlign: 'center', width: '100%' }}>
-        <h1 style={{ fontFamily: 'var(--font-display)', color: 'var(--color-yellow)', fontSize: '2.5rem' }}>YOUR CHARACTER CODE</h1>
-        <p style={{ marginTop: '20px', fontSize: '18px', fontWeight: 'bold' }}>
-          {userData?.name || 'Player'}, you are a...
-        </p>
-        <div style={{ 
-          marginTop: '30px', 
-          backgroundColor: 'white', 
-          color: '#17385c', 
-          padding: '30px 20px', 
-          borderRadius: '16px',
-          boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '15px'
-        }}>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2.2rem', margin: 0, color: 'var(--color-green)', lineHeight: 1.1 }}>
-            {resultTrait.toUpperCase()}
-          </h2>
-          <div style={{ width: '50px', height: '4px', backgroundColor: 'var(--color-yellow)', borderRadius: '2px' }}></div>
-        </div>
-      </div>
+  const imageFilename = resultTrait !== "Unknown" 
+    ? `/assets/results/${resultTrait.replace(/\s+/g, '')}.webp`
+    : null;
 
-      <div className="footer-banner" style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto', paddingBottom: '20px' }}>
-        <img src="/assets/homeOfGoodFood.webp" alt="The Home of Good Food banner" style={{ width: '90%', objectFit: 'contain' }} />
-      </div>
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', backgroundColor: '#1c1c1c' }}>
+      {imageFilename && (
+        <img 
+          src={imageFilename} 
+          alt={`${resultTrait} Result`} 
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+        />
+      )}
     </div>
   );
 }
