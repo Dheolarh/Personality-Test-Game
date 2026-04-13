@@ -30,8 +30,6 @@ const QuestionnaireScreen = ({ userData, onComplete }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
-      <Header overlay={true} />
-      
       {/* Dynamic image based on active question */}
       <img src={currentQ.image} alt={`Q${currentQ.id} Header Photo`} className="question-header-image" />
       
