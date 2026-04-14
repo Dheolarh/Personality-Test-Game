@@ -23,12 +23,11 @@ const traitToColors = {
   'Comfort Seeker': ['#87CEEB', '#00008B', '#ffffff', '#90EE90'],
   'Culinary Alchemist': ['#d32f2f', '#5D4037', '#FFFDD0', '#ffffff'],
   'On the Go Hustler': ['#8B0000', '#fbbc05', '#000000', '#ffffff'],
+  'Nostalgic Traditionalist': ['#5D4037', '#8B4513', '#FFFDD0', '#D4AF37'],
   'Default': ['#fbbc05', '#688e40', '#ffffff', '#17385c']
 };
 
-const traitList = Object.keys(traitToFolder);
-
-function ResultScreen({ userData, answers, debugTrait, setDebugTrait }) {
+function ResultScreen({ userData, answers }) {
   const [isExploding, setIsExploding] = useState(false);
   const [confettiKey, setConfettiKey] = useState(0);
 
@@ -39,6 +38,8 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait }) {
       setConfettiKey(prev => prev + 1);
       setIsExploding(true);
       const audio = new Audio('/assets/sound/confetti sfx.mp3');
+      audio.volume = 0.25; // Set volume to 25%
+      audio.loop = false;  // Ensure it doesn't loop
       audio.play().catch(e => console.log('Audio play failed:', e));
     }, 50);
   };
@@ -48,8 +49,6 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait }) {
   }, []);
 
   const resultTrait = useMemo(() => {
-    if (debugTrait) return debugTrait;
-
     const tally = {};
     let maxCount = 0;
     let firstToReachMax = 'Unknown';
@@ -72,18 +71,11 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait }) {
     });
 
     return firstToReachMax;
-  }, [answers, debugTrait]);
+  }, [answers]);
 
   const folderName = traitToFolder[resultTrait] || 'Achiever';
   const personaFile = traitToPersona[resultTrait] || 'man.webp';
   const basePath = `/assets/results/${folderName}`;
-
-  const handleCycleResult = () => {
-    const currentIndex = traitList.indexOf(resultTrait);
-    const nextIndex = (currentIndex + 1) % traitList.length;
-    setDebugTrait(traitList[nextIndex]);
-    fireConfetti();
-  };
 
   return (
     <>
@@ -98,13 +90,6 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait }) {
             <img src={`${basePath}/motivation.webp`} className="layer-motivation" alt="motivation" />
           </div>
         </div>
-
-        <button 
-          onClick={handleCycleResult}
-          className="debug-cycle-btn"
-        >
-          SWAP RESULT ({resultTrait})
-        </button>
       </div>
 
       {isExploding && (

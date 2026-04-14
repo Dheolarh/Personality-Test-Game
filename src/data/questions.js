@@ -112,9 +112,38 @@ export const questionsData = [
 ];
 
 export const resultImages = [
-  "/assets/results/EarlyAchiever.webp",
-  "/assets/results/OntheGoHustler.webp",
-  "/assets/results/ComfortSeeker.webp",
-  "/assets/results/NostalgicTraditionalist.webp",
-  "/assets/results/CulinaryAlchemist.webp"
+  // Achiever
+  "/assets/results/Achiever/background.webp",
+  "/assets/results/Achiever/headline.webp",
+  "/assets/results/Achiever/man.webp",
+  "/assets/results/Achiever/product.webp",
+  "/assets/results/Achiever/motivation.webp",
+  
+  // Comfort
+  "/assets/results/Comfort/background.webp",
+  "/assets/results/Comfort/headline.webp",
+  "/assets/results/Comfort/man.webp",
+  "/assets/results/Comfort/product.webp",
+  "/assets/results/Comfort/motivation.webp",
+  
+  // Culinary
+  "/assets/results/Culinary/background.webp",
+  "/assets/results/Culinary/headline.webp",
+  "/assets/results/Culinary/chef.webp",
+  "/assets/results/Culinary/product.webp",
+  "/assets/results/Culinary/motivation.webp",
+  
+  // Hustler
+  "/assets/results/Hustler/background.webp",
+  "/assets/results/Hustler/headline.webp",
+  "/assets/results/Hustler/woman.webp",
+  "/assets/results/Hustler/product.webp",
+  "/assets/results/Hustler/motivation.webp",
+  
+  // Traditional
+  "/assets/results/Traditional/background.webp",
+  "/assets/results/Traditional/headline.webp",
+  "/assets/results/Traditional/woman.webp",
+  "/assets/results/Traditional/product.webp",
+  "/assets/results/Traditional/motivation.webp"
 ];

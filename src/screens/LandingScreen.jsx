@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { saveUserToSheet } from '../services/db';
 
-const LandingScreen = ({ onStart, onDebugResult }) => {
+const LandingScreen = ({ onStart }) => {
   const [formData, setFormData] = useState({ name: '', phone: '', location: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -15,9 +15,10 @@ const LandingScreen = ({ onStart, onDebugResult }) => {
   const handleStart = async (e) => {
     e.preventDefault();
 
-    // Strict validation: Exactly two names, each at least 2 characters
+    // Strict validation: Exactly two names, each at least 3 characters
     const trimmedName = formData.name.trim();
-    const nameRegex = /^[a-zA-Z]{2,}\s+[a-zA-Z]{2,}$/;
+    // Allows 2 or 3 names, each at least 3 characters
+    const nameRegex = /^[a-zA-Z]{3,}\s+[a-zA-Z]{3,}(\s+[a-zA-Z]{3,})?$/;
     
     if (!trimmedName) { 
       setErrorMsg('Please enter your full name.'); 
@@ -25,7 +26,7 @@ const LandingScreen = ({ onStart, onDebugResult }) => {
     }
     
     if (!nameRegex.test(trimmedName)) {
-      setErrorMsg('Please enter both First and Last name (at least 2 letters each).');
+      setErrorMsg('Please enter 2 or 3 names (at least 3 letters each).');
       return;
     }
 
@@ -112,7 +113,7 @@ const LandingScreen = ({ onStart, onDebugResult }) => {
             className="form-input"
             value={formData.location}
             onChange={handleChange}
-            placeholder="Ikeja, Lagos"
+            placeholder="e.g. Lagos, Nigeria"
             required
             disabled={isSubmitting}
           />
@@ -126,28 +127,6 @@ const LandingScreen = ({ onStart, onDebugResult }) => {
 
         <button type="submit" className="btn-submit" disabled={isSubmitting}>
           {isSubmitting ? 'Registering...' : 'Discover YOU!'}
-        </button>
-
-        <button 
-          type="button" 
-          onClick={onDebugResult} 
-          style={{
-            marginTop: '15px',
-            background: 'transparent',
-            color: '#fbbc05',
-            border: '1px solid #fbbc05',
-            padding: '10px',
-            borderRadius: '25px',
-            fontSize: '11px',
-            cursor: 'pointer',
-            opacity: 0.8,
-            width: '100%',
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            letterSpacing: '1px'
-          }}
-        >
-          DEBUG: VIEW RESULTS
         </button>
       </form>
     </>

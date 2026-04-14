@@ -406,22 +406,6 @@ body {
   z-index: 10;
 }
 
-.debug-cycle-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 200;
-  background: #fbbc05;
-  color: #000;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 10px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-
 /* Trait-Specific Overrides (Absolute Positioning) */
 
 .result-Achiever .layer-man {
