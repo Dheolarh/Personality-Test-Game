@@ -28,6 +28,7 @@ export const saveUserToSheet = async (userData) => {
     const result = await response.json();
     return { 
       success: result.status === 'success', 
+      isDuplicate: result.isDuplicate || false,
       message: result.message || 'Data saved successfully' 
     };
   } catch (error) {
