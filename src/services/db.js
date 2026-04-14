@@ -1,26 +1,37 @@
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzhsw-CegH2_LU7l56-_i0kWqSJ18cExpDdIdAl1aXyoN8mqoN2NbPGdmMYNz1csOs-KA/exec';
+const SECURITY_TOKEN = 'PG_CODE_2026_SECURE_TOKEN';
 
 /**
- * Saves user data to Google Sheets.
+ * Saves user data to Google Sheets with security verification.
  * @param {Object} userData - { name, phone, location }
- * @returns {Promise<Object>} - { success: boolean, message: string }
  */
 export const saveUserToSheet = async (userData) => {
   try {
+    const payload = {
+      ...userData,
+      securityToken: SECURITY_TOKEN,
+      timestamp: new Date().toISOString()
+    };
+
     const response = await fetch(SHEET_URL, {
       method: 'POST',
-      mode: 'no-cors', // Apps Script requires no-cors for simple cross-origin POSTs without preflight
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain;charset=utf-8', // Apps Script handles text/plain best for cross-origin POSTs
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify(payload),
     });
 
-    // With mode 'no-cors', the response is opaque (status 0).
-    // We assume it's sent successfully if no error is thrown.
-    return { success: true, message: 'Data sent successfully' };
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const result = await response.json();
+    return { 
+      success: result.status === 'success', 
+      message: result.message || 'Data saved successfully' 
+    };
   } catch (error) {
     console.error('Error saving to Google Sheets:', error);
-    return { success: false, message: 'Failed to connect to the database' };
+    return { success: false, message: 'Security verification or connection failed' };
   }
 };
