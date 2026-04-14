@@ -96,7 +96,7 @@ function ResultScreen({ userData, answers }) {
         <ConfettiExplosion
           key={confettiKey}
           force={0.8}
-          duration={4000}
+          duration={8000}
           particleCount={250}
           width={1600}
           zIndex={99999}
