@@ -8,6 +8,7 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState('landing');
   const [userData, setUserData] = useState(null);
   const [answers, setAnswers] = useState({});
+  const [debugTrait, setDebugTrait] = useState(null);
 
   // Background Preloading Sequence
   useEffect(() => {
@@ -34,6 +35,10 @@ function App() {
     setCurrentScreen('questionnaire');
   };
 
+  const handleDebugResult = () => {
+    setCurrentScreen('result');
+  };
+
   const handleQuestionnaireComplete = (finalAnswers) => {
     setAnswers(finalAnswers);
     setCurrentScreen('result');
@@ -41,9 +46,26 @@ function App() {
 
   return (
     <div className={`app-root ${currentScreen === 'questionnaire' ? 'bg-yellow' : 'bg-dark'}`}>
-      {currentScreen === 'landing' && <LandingScreen onStart={handleStartGame} />}
-      {currentScreen === 'questionnaire' && <QuestionnaireScreen userData={userData} onComplete={handleQuestionnaireComplete} />}
-      {currentScreen === 'result' && <ResultScreen userData={userData} answers={answers} />}
+      {currentScreen === 'landing' && (
+        <LandingScreen 
+          onStart={handleStartGame} 
+          onDebugResult={handleDebugResult} 
+        />
+      )}
+      {currentScreen === 'questionnaire' && (
+        <QuestionnaireScreen 
+          userData={userData} 
+          onComplete={handleQuestionnaireComplete} 
+        />
+      )}
+      {currentScreen === 'result' && (
+        <ResultScreen 
+          userData={userData} 
+          answers={answers} 
+          debugTrait={debugTrait} 
+          setDebugTrait={setDebugTrait}
+        />
+      )}
     </div>
   );
 }

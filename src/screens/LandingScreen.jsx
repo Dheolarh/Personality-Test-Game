@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { saveUserToSheet } from '../services/db';
 
-const LandingScreen = ({ onStart }) => {
+const LandingScreen = ({ onStart, onDebugResult }) => {
   const [formData, setFormData] = useState({ name: '', phone: '', location: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -15,15 +15,22 @@ const LandingScreen = ({ onStart }) => {
   const handleStart = async (e) => {
     e.preventDefault();
 
-    if (!formData.name) { setErrorMsg('Please enter your full name.'); return; }
-    if (!formData.phone) { setErrorMsg('Please enter your phone number.'); return; }
-    if (!formData.location) { setErrorMsg('Please enter your location.'); return; }
-
-    const nameRegex = /^[a-zA-Z\s\-']+$/;
-    if (!nameRegex.test(formData.name)) {
-      setErrorMsg('Names should only contain letters and spaces.');
+    // Strict validation: Exactly two names, each at least 2 characters
+    const trimmedName = formData.name.trim();
+    const nameRegex = /^[a-zA-Z]{2,}\s+[a-zA-Z]{2,}$/;
+    
+    if (!trimmedName) { 
+      setErrorMsg('Please enter your full name.'); 
+      return; 
+    }
+    
+    if (!nameRegex.test(trimmedName)) {
+      setErrorMsg('Please enter both First and Last name (at least 2 letters each).');
       return;
     }
+
+    if (!formData.phone) { setErrorMsg('Please enter your phone number.'); return; }
+    if (!formData.location) { setErrorMsg('Please enter your location.'); return; }
 
     const digitsOnly = formData.phone.replace(/\D/g, '');
     if (digitsOnly.length !== 11) {
@@ -74,8 +81,8 @@ const LandingScreen = ({ onStart }) => {
             className="form-input"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Adebayo Chukwuma Abubakar"
-            title="Please use only letters for your name"
+            placeholder="Firstname Lastname"
+            title="Please enter your First and Last name"
             required
             disabled={isSubmitting}
           />
@@ -119,6 +126,28 @@ const LandingScreen = ({ onStart }) => {
 
         <button type="submit" className="btn-submit" disabled={isSubmitting}>
           {isSubmitting ? 'Registering...' : 'Discover YOU!'}
+        </button>
+
+        <button 
+          type="button" 
+          onClick={onDebugResult} 
+          style={{
+            marginTop: '15px',
+            background: 'transparent',
+            color: '#fbbc05',
+            border: '1px solid #fbbc05',
+            padding: '10px',
+            borderRadius: '25px',
+            fontSize: '11px',
+            cursor: 'pointer',
+            opacity: 0.8,
+            width: '100%',
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            letterSpacing: '1px'
+          }}
+        >
+          DEBUG: VIEW RESULTS
         </button>
       </form>
     </>
