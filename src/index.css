@@ -417,15 +417,16 @@ body {
 }
 
 .result-Achiever .layer-product {
-  width: 45%;
+  width: 55%;
   height: auto;
-  top: 58svh;
+  top: 55svh;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .result-Achiever .layer-headline {
-  height: 22svh;
+  width: 95%;
+  height: 25svh;
   top: 3svh;
 }
 
