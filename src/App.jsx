@@ -4,6 +4,8 @@ import QuestionnaireScreen from './screens/QuestionnaireScreen';
 import ResultScreen from './screens/ResultScreen';
 import { questionsData, resultImages } from './data/questions';
 
+const IS_DEBUG = false;
+
 function App() {
   const [currentScreen, setCurrentScreen] = useState('landing');
   const [userData, setUserData] = useState(null);
@@ -83,6 +85,7 @@ function App() {
         <LandingScreen 
           onStart={handleStartGame} 
           onTest={handleTestResult}
+          isDebug={IS_DEBUG}
         />
       )}
       {currentScreen === 'questionnaire' && (
@@ -97,6 +100,7 @@ function App() {
           answers={answers} 
           debugTrait={debugTrait}
           setDebugTrait={setDebugTrait}
+          isDebug={IS_DEBUG}
           onRestart={() => {
             setDebugTrait(null);
             setCurrentScreen('landing');

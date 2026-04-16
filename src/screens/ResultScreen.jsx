@@ -29,7 +29,7 @@ const traitToColors = {
 
 const traits = ['Early Achiever', 'Comfort Seeker', 'Culinary Alchemist', 'On the Go Hustler', 'Nostalgic Traditionalist'];
 
-function ResultScreen({ userData, answers, debugTrait, setDebugTrait, onRestart }) {
+function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, onRestart }) {
   const [isExploding, setIsExploding] = useState(false);
   const [confettiKey, setConfettiKey] = useState(0);
 
@@ -90,7 +90,7 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, onRestart 
     <>
       <div className={`result-screen result-${folderName}`}>
         {/* Debug Controls Overlay */}
-        {debugTrait && (
+        {isDebug && (
           <div style={{
             position: 'absolute',
             top: '20px',

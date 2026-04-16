@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { saveUserToSheet } from '../services/db';
 
-const LandingScreen = ({ onStart, onTest }) => {
+const LandingScreen = ({ onStart, onTest, isDebug }) => {
   const [formData, setFormData] = useState({ name: '', phone: '', location: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -154,24 +154,25 @@ const LandingScreen = ({ onStart, onTest }) => {
           {isSubmitting ? 'Registering...' : 'Discover YOU!'}
         </button>
 
-        {/* Small Test Button */}
-        <div style={{ marginTop: '20px', textAlign: 'center' }}>
-          <button 
-            type="button"
-            onClick={() => onTest(traits[0])}
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.3)',
-              color: 'white',
-              fontSize: '10px',
-              padding: '5px 10px',
-              borderRadius: '20px',
-              cursor: 'pointer'
-            }}
-          >
-            TEST RESULTS
-          </button>
-        </div>
+        {isDebug && (
+          <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <button 
+              type="button"
+              onClick={() => onTest(traits[0])}
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                color: 'white',
+                fontSize: '10px',
+                padding: '5px 10px',
+                borderRadius: '20px',
+                cursor: 'pointer'
+              }}
+            >
+              TEST RESULTS
+            </button>
+          </div>
+        )}
       </form>
     </>
   );
