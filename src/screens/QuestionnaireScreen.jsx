@@ -7,8 +7,15 @@ const QuestionnaireScreen = ({ userData, onComplete }) => {
   const [answers, setAnswers] = useState({});
   const [selectedOptionId, setSelectedOptionId] = useState(null);
 
+  const playSound = (type) => {
+    const audio = new Audio(`/assets/sound/${type}.mp3`);
+    audio.volume = 0.2;
+    audio.play().catch(e => console.log('Audio play failed:', e));
+  };
+
   const handleOptionSelect = (optionId) => {
     if (selectedOptionId === optionId) {
+      playSound('select');
       const qId = questionsData[currentQuestionIndex].id;
       const newAnswers = { ...answers, [qId]: optionId };
       setAnswers(newAnswers);
@@ -20,6 +27,7 @@ const QuestionnaireScreen = ({ userData, onComplete }) => {
         onComplete(newAnswers);
       }
     } else {
+      playSound('click');
       setSelectedOptionId(optionId);
     }
   };

@@ -26,13 +26,13 @@ export const saveUserToSheet = async (userData) => {
     }
 
     const result = await response.json();
-    return { 
-      success: result.status === 'success', 
+    return {
+      success: result.status === 'success',
       isDuplicate: result.isDuplicate || false,
-      message: result.message || 'Data saved successfully' 
+      message: result.message || 'Data saved successfully'
     };
   } catch (error) {
     console.error('Error saving to Google Sheets:', error);
-    return { success: false, message: 'Security verification or connection failed' };
+    return { success: false, message: 'Network error: please check your internet connection' };
   }
 };

@@ -27,9 +27,18 @@ const traitToColors = {
   'Default': ['#fbbc05', '#688e40', '#ffffff', '#17385c']
 };
 
-function ResultScreen({ userData, answers }) {
+const traits = ['Early Achiever', 'Comfort Seeker', 'Culinary Alchemist', 'On the Go Hustler', 'Nostalgic Traditionalist'];
+
+function ResultScreen({ userData, answers, debugTrait, setDebugTrait, onRestart }) {
   const [isExploding, setIsExploding] = useState(false);
   const [confettiKey, setConfettiKey] = useState(0);
+
+  const handleNextTrait = () => {
+    const currentIndex = traits.indexOf(debugTrait || 'Early Achiever');
+    const nextIndex = (currentIndex + 1) % traits.length;
+    setDebugTrait(traits[nextIndex]);
+    fireConfetti();
+  };
 
   const fireConfetti = () => {
     // Re-trigger explosion
@@ -70,8 +79,8 @@ function ResultScreen({ userData, answers }) {
       }
     });
 
-    return firstToReachMax;
-  }, [answers]);
+    return debugTrait || firstToReachMax;
+  }, [answers, debugTrait]);
 
   const folderName = traitToFolder[resultTrait] || 'Achiever';
   const personaFile = traitToPersona[resultTrait] || 'man.webp';
@@ -80,6 +89,49 @@ function ResultScreen({ userData, answers }) {
   return (
     <>
       <div className={`result-screen result-${folderName}`}>
+        {/* Debug Controls Overlay */}
+        {debugTrait && (
+          <div style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            zIndex: 10000,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px'
+          }}>
+            <button 
+              onClick={handleNextTrait}
+              style={{
+                background: '#fbbc05',
+                color: '#17385c',
+                border: 'none',
+                padding: '10px 15px',
+                borderRadius: '5px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.3)'
+              }}
+            >
+              SWAP RESULT 🔄
+            </button>
+            <button 
+              onClick={onRestart}
+              style={{
+                background: 'rgba(255,255,255,0.2)',
+                color: 'white',
+                border: '1px solid white',
+                padding: '8px 12px',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer'
+              }}
+            >
+              EXIT TEST ×
+            </button>
+          </div>
+        )}
+
         <div className="result-layers">
           <img src={`${basePath}/background.webp`} className="layer-bg" alt="bg" />
           
@@ -96,7 +148,7 @@ function ResultScreen({ userData, answers }) {
         <ConfettiExplosion
           key={confettiKey}
           force={0.8}
-          duration={8000}
+          duration={10000}
           particleCount={250}
           width={1600}
           zIndex={99999}

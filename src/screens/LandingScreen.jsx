@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { saveUserToSheet } from '../services/db';
 
-const LandingScreen = ({ onStart }) => {
+const LandingScreen = ({ onStart, onTest }) => {
   const [formData, setFormData] = useState({ name: '', phone: '', location: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [isWarning, setIsWarning] = useState(false);
+
+  const traits = ['Early Achiever', 'Comfort Seeker', 'Culinary Alchemist', 'On the Go Hustler', 'Nostalgic Traditionalist'];
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,9 +21,7 @@ const LandingScreen = ({ onStart }) => {
   const handleStart = async (e) => {
     e.preventDefault();
 
-    // Strict validation: Exactly two names, each at least 3 characters
     const trimmedName = formData.name.trim();
-    // Allows 2 or 3 names, each at least 3 characters
     const nameRegex = /^[a-zA-Z]{3,}\s+[a-zA-Z]{3,}(\s+[a-zA-Z]{3,})?$/;
     
     if (!trimmedName) { 
@@ -153,6 +153,25 @@ const LandingScreen = ({ onStart }) => {
         <button type="submit" className="btn-submit" disabled={isSubmitting}>
           {isSubmitting ? 'Registering...' : 'Discover YOU!'}
         </button>
+
+        {/* Small Test Button */}
+        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+          <button 
+            type="button"
+            onClick={() => onTest(traits[0])}
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              color: 'white',
+              fontSize: '10px',
+              padding: '5px 10px',
+              borderRadius: '20px',
+              cursor: 'pointer'
+            }}
+          >
+            TEST RESULTS
+          </button>
+        </div>
       </form>
     </>
   );
