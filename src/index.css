@@ -409,25 +409,26 @@ body {
 /* Trait-Specific Overrides (Absolute Positioning) */
 
 .result-Achiever .layer-man {
-  width: 100%;
-  top: 20svh;
+  width: 110%;
+  height: 58svh;
+  top: 18.5svh;
   left: 50%;
   transform: translateX(-50%);
   object-fit: cover;
 }
 
 .result-Achiever .layer-product {
-  width: 55%;
+  width: 65%;
   height: auto;
-  top: 55svh;
+  top: 54svh;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .result-Achiever .layer-headline {
-  width: 95%;
-  height: 25svh;
-  top: 3svh;
+  width: 85%;
+  height: 18svh;
+  top: 5svh;
 }
 
 .result-Achiever .layer-motivation {
@@ -438,13 +439,13 @@ body {
 
 /* On the Go Hustler */
 .result-Hustler .layer-headline {
-  height: 22svh;
-  width: 95%;
-  top: 3svh;
+  height: 18svh;
+  width: 85%;
+  top: 5svh;
 }
 .result-Hustler .layer-man {
-  top: 18svh;
-  height: 62svh;
+  top: 22svh;
+  height: 52svh;
 }
 .result-Hustler .layer-product {
   top: 61svh;
@@ -458,18 +459,19 @@ body {
 
 /* Comfort Seeker: Larger character */
 .result-Comfort .layer-headline {
-  height: 22svh;
-  width: 95%;
-  top: 4svh;
+  height: 20svh;
+  width: 90%;
+  top: 4.5svh;
 }
 .result-Comfort .layer-man {
-  top: 15svh;
-  height: 65svh;
+  top: 14svh;
+  height: 68svh;
+  width: 105%;
 }
 .result-Comfort .layer-product {
   top: 52svh;
-  height: 30svh;
-  width: 95%;
+  height: 34svh;
+  width: 105%;
 }
 .result-Comfort .layer-motivation {
   height: 16svh;
@@ -479,21 +481,28 @@ body {
 
 /* Culinary Alchemist */
 .result-Culinary .layer-headline {
-  height: 22svh;
-  width: 95%;
-  top: 3svh;
+  height: 16svh;
+  width: 80%;
+  top: 5svh;
 }
 .result-Culinary .layer-man {
-  top: 18svh;
-  height: 48svh;
+  top: 21svh;
+  height: 43svh;
+}
+.result-Culinary .layer-ingredients {
+  top: 15svh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 42svh;
 }
 .result-Culinary .layer-product {
-  top: 52svh;
-  height: 32svh; /* Increased height to reduce gap */
-  width: 95%;
+  top: 55.5svh;
+  height: 29svh;
+  width: 90%;
 }
 .result-Culinary .layer-motivation {
-  height: 16svh;
+  height: 15svh;
   width: 95%;
   bottom: 2svh;
 }
@@ -505,14 +514,14 @@ body {
   top: 3svh;
 }
 .result-Traditional .layer-man {
-  top: 25svh;
-  height: 48svh;
+  top: 21svh;
+  height: 56svh;
 }
 .result-Traditional .layer-product {
-  top: 62svh;
+  top: 60svh;
   left: 65%;
-  width: 55%;
-  height: 24svh;
+  width: 65%;
+  height: 28svh;
 }
 .result-Traditional .layer-motivation {
   height: 16svh;

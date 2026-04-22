@@ -5,7 +5,6 @@ import { questionsData } from '../data/questions';
 const QuestionnaireScreen = ({ userData, onComplete }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [selectedOptionId, setSelectedOptionId] = useState(null);
 
   const playSound = (type) => {
     const audio = new Audio(`/assets/sound/${type}.mp3`);
@@ -14,21 +13,15 @@ const QuestionnaireScreen = ({ userData, onComplete }) => {
   };
 
   const handleOptionSelect = (optionId) => {
-    if (selectedOptionId === optionId) {
-      playSound('select');
-      const qId = questionsData[currentQuestionIndex].id;
-      const newAnswers = { ...answers, [qId]: optionId };
-      setAnswers(newAnswers);
-      setSelectedOptionId(null);
+    playSound('click');
+    const qId = questionsData[currentQuestionIndex].id;
+    const newAnswers = { ...answers, [qId]: optionId };
+    setAnswers(newAnswers);
 
-      if (currentQuestionIndex < questionsData.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-      } else {
-        onComplete(newAnswers);
-      }
+    if (currentQuestionIndex < questionsData.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      playSound('click');
-      setSelectedOptionId(optionId);
+      onComplete(newAnswers);
     }
   };
 
@@ -48,7 +41,7 @@ const QuestionnaireScreen = ({ userData, onComplete }) => {
       <div className="options-container">
         {currentQ.options.map((opt) => (
           <div
-            className={`option-row ${selectedOptionId === opt.id ? 'selected' : ''}`}
+            className="option-row"
             key={opt.id}
             onClick={() => handleOptionSelect(opt.id)}
           >

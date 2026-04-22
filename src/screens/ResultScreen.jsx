@@ -138,6 +138,9 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
           <div className="layers-content">
             <img src={`${basePath}/headline.webp`} className="layer-headline" alt="headline" />
             <img src={`${basePath}/${personaFile}`} className="layer-man" alt="persona" />
+            {resultTrait === 'Culinary Alchemist' && (
+              <img src={`${basePath}/ingredients.webp`} className="layer-ingredients" alt="ingredients" />
+            )}
             <img src={`${basePath}/product.webp`} className="layer-product" alt="product" />
             <img src={`${basePath}/motivation.webp`} className="layer-motivation" alt="motivation" />
           </div>
