@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { questionsData } from '../data/questions';
 import ConfettiExplosion from 'react-confetti-explosion';
+import { toPng } from 'html-to-image';
 
 const traitToFolder = {
   'Early Achiever': 'Achiever',
@@ -19,15 +20,23 @@ const traitToPersona = {
 };
 
 const traitToColors = {
-  'Early Achiever': ['#5D4037', '#ffffff', '#688e40', '#fbbc05'],
-  'Comfort Seeker': ['#87CEEB', '#00008B', '#ffffff', '#90EE90'],
-  'Culinary Alchemist': ['#d32f2f', '#5D4037', '#FFFDD0', '#ffffff'],
-  'On the Go Hustler': ['#8B0000', '#fbbc05', '#000000', '#ffffff'],
-  'Nostalgic Traditionalist': ['#5D4037', '#8B4513', '#FFFDD0', '#D4AF37'],
+  'Early Achiever': ['#e0e773ff', '#ffffff', '#688e40', '#fbbc05'],
+  'Comfort Seeker': ['#f78708ff', '#662c2c', '#ffffff', '#90EE90'],
+  'Culinary Alchemist': ['#c20909ff', '#0c613f', '#FFFDD0', '#dea53c'],
+  'On the Go Hustler': ['#8B0000', '#fbbc05', '#eb8501ff', '#ffffff'],
+  'Nostalgic Traditionalist': ['#0c613f', '#8B4513', '#FFFDD0', '#D4AF37'],
   'Default': ['#fbbc05', '#688e40', '#ffffff', '#17385c']
 };
 
 const traits = ['Early Achiever', 'Comfort Seeker', 'Culinary Alchemist', 'On the Go Hustler', 'Nostalgic Traditionalist'];
+
+const traitToShareColor = {
+  'Early Achiever': '#688e40',
+  'Comfort Seeker': '#662c2c',
+  'Culinary Alchemist': '#de4f3cff',
+  'On the Go Hustler': '#f7b708ff',
+  'Nostalgic Traditionalist': '#0c613f'
+};
 
 function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, onRestart }) {
   const [isExploding, setIsExploding] = useState(false);
@@ -56,6 +65,33 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
   useEffect(() => {
     fireConfetti();
   }, []);
+
+  const handleShare = async () => {
+    const element = document.getElementById('capture-result');
+    if (!element) return;
+
+    const hideEls = document.querySelectorAll('.hide-on-capture');
+    hideEls.forEach(el => el.style.opacity = '0');
+
+    try {
+      const dataUrl = await toPng(element, {
+        cacheBust: true,
+        pixelRatio: 2
+      });
+      
+      hideEls.forEach(el => el.style.opacity = '1');
+
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = `${resultTrait || 'Result'}.png`.replace(/\s+/g, '_');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error exporting image:', error);
+      hideEls.forEach(el => el.style.opacity = '1');
+    }
+  };
 
   const resultTrait = useMemo(() => {
     const tally = {};
@@ -88,10 +124,10 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
 
   return (
     <>
-      <div className={`result-screen result-${folderName}`}>
+      <div id="capture-result" className={`result-screen result-${folderName}`}>
         {/* Debug Controls Overlay */}
         {isDebug && (
-          <div style={{
+          <div className="hide-on-capture" style={{
             position: 'absolute',
             top: '20px',
             right: '20px',
@@ -131,6 +167,34 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
             </button>
           </div>
         )}
+
+        <button 
+          className="hide-on-capture"
+          onClick={handleShare}
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: isDebug ? '150px' : '20px',
+            zIndex: 10000,
+            background: traitToShareColor[resultTrait] || '#fbbc05',
+            color: '#fff',
+            border: '2px solid white',
+            width: '44px',
+            height: '44px',
+            borderRadius: '10px',
+            cursor: 'pointer',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+            <polyline points="16 6 12 2 8 6"></polyline>
+            <line x1="12" y1="2" x2="12" y2="15"></line>
+          </svg>
+        </button>
 
         <div className="result-layers">
           <img src={`${basePath}/background.webp`} className="layer-bg" alt="bg" />

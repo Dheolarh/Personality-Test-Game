@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { questionsData } from '../data/questions';
 
+const clickAudio = new Audio('/assets/sound/click.mp3');
+clickAudio.volume = 0.2;
+
 const QuestionnaireScreen = ({ userData, onComplete }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
 
-  const playSound = (type) => {
-    const audio = new Audio(`/assets/sound/${type}.mp3`);
-    audio.volume = 0.2;
-    audio.play().catch(e => console.log('Audio play failed:', e));
+  const playSound = () => {
+    clickAudio.currentTime = 0;
+    clickAudio.play().catch(e => console.log('Audio play failed:', e));
   };
 
   const handleOptionSelect = (optionId) => {
-    playSound('click');
+    playSound();
     const qId = questionsData[currentQuestionIndex].id;
     const newAnswers = { ...answers, [qId]: optionId };
     setAnswers(newAnswers);
