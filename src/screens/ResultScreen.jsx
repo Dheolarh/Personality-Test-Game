@@ -103,7 +103,7 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
         try {
           const traitText = traitToShareText[resultTrait] || `I'm a ${resultTrait}`;
           const hashtagString = hashtags && hashtags.length > 0 ? `\n${hashtags.join(' ')}` : '';
-          const shareText = `Check out my personality test: ${traitText}!${hashtagString}`;
+          const shareText = `Check out my personality result: ${traitText}!${hashtagString}`;
 
           await navigator.share({
             title: 'My Personality Result',
