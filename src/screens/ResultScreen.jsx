@@ -84,10 +84,11 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
     hideEls.forEach(el => el.style.opacity = '0');
 
     try {
-      const dataUrl = await toPng(element, {
-        cacheBust: true,
-        pixelRatio: 2
-      });
+      // iOS Safari has a known bug where it doesn't wait for images to load 
+      // inside the SVG foreignObject, resulting in a black background.
+      // The standard workaround is to call toPng twice (first caches, second captures).
+      await toPng(element, { pixelRatio: 2 });
+      const dataUrl = await toPng(element, { pixelRatio: 2 });
       
       hideEls.forEach(el => el.style.opacity = '1');
 
