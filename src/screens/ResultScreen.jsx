@@ -86,13 +86,30 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
       const filename = `${resultTrait || 'Result'}.png`.replace(/\s+/g, '_');
       const file = new File([blob], filename, { type: 'image/png' });
 
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          title: 'My Personality Result',
-          text: `Check out my personality result: I am a ${resultTrait}!`,
-          files: [file]
-        });
+      // In many mobile scenarios over local Wi-Fi, navigator.share is undefined 
+      // because the spec requires a Secure Context (HTTPS). 
+      // It works on standard localhost or real deployed https sites.
+      if (typeof navigator.share !== 'undefined') {
+        try {
+          await navigator.share({
+            title: 'My Personality Result',
+            text: `Check out my personality result: I am a ${resultTrait}!`,
+            files: [file]
+          });
+        } catch (shareErr) {
+          console.error("Error from navigator.share:", shareErr);
+          // If the user cancelled, AbortError is thrown. We don't want to auto-download if they just cancelled.
+          if (shareErr.name !== 'AbortError') {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        }
       } else {
+        // Fallback for non-secure contexts (like testing on local IP) or unsupported browsers
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = filename;
