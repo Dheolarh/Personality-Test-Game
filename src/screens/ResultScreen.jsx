@@ -38,6 +38,16 @@ const traitToShareColor = {
   'Nostalgic Traditionalist': '#0c613f'
 };
 
+const traitToShareText = {
+  'Culinary Alchemist': "I'm a Master of Flavour",
+  'Comfort Seeker': "I'm a Comfort Seeker",
+  'Early Achiever': "I'm an Early Achiever",
+  'On the Go Hustler': "I'm an On The Go Hustler",
+  'Nostalgic Traditionalist': "I'm a Culture Custodian"
+};
+
+const hashtags = ['#GoldenPenny', '#FoodFest'];
+
 function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, onRestart }) {
   const [isExploding, setIsExploding] = useState(false);
   const [confettiKey, setConfettiKey] = useState(0);
@@ -91,9 +101,13 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
       // It works on standard localhost or real deployed https sites.
       if (typeof navigator.share !== 'undefined') {
         try {
+          const traitText = traitToShareText[resultTrait] || `I'm a ${resultTrait}`;
+          const hashtagString = hashtags && hashtags.length > 0 ? `\n${hashtags.join(' ')}` : '';
+          const shareText = `Check out my personality test: ${traitText}!${hashtagString}`;
+
           await navigator.share({
             title: 'My Personality Result',
-            text: `Check out my personality result: I am a ${resultTrait}!`,
+            text: shareText,
             files: [file]
           });
         } catch (shareErr) {
