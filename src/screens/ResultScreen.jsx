@@ -81,14 +81,27 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
       
       hideEls.forEach(el => el.style.opacity = '1');
 
-      const link = document.createElement('a');
-      link.href = dataUrl;
-      link.download = `${resultTrait || 'Result'}.png`.replace(/\s+/g, '_');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const res = await fetch(dataUrl);
+      const blob = await res.blob();
+      const filename = `${resultTrait || 'Result'}.png`.replace(/\s+/g, '_');
+      const file = new File([blob], filename, { type: 'image/png' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: 'My Personality Result',
+          text: `Check out my personality result: I am a ${resultTrait}!`,
+          files: [file]
+        });
+      } else {
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     } catch (error) {
-      console.error('Error exporting image:', error);
+      console.error('Error exporting/sharing image:', error);
       hideEls.forEach(el => el.style.opacity = '1');
     }
   };
