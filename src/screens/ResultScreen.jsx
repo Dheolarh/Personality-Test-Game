@@ -46,7 +46,7 @@ const traitToShareText = {
   'Nostalgic Traditionalist': "I'm a Culture Custodian"
 };
 
-const hashtags = ['#GoldenPenny', '#FoodFest'];
+const hashtags = ['#GoldenPennyFoodFest'];
 
 function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, onRestart }) {
   const [isExploding, setIsExploding] = useState(false);
