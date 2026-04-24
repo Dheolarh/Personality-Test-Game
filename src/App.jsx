@@ -4,7 +4,7 @@ import QuestionnaireScreen from './screens/QuestionnaireScreen';
 import ResultScreen from './screens/ResultScreen';
 import { questionsData, resultImages } from './data/questions';
 
-const IS_DEBUG = true;
+const IS_DEBUG = false;
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('landing');
