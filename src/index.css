@@ -410,25 +410,25 @@ body {
 
 .result-Achiever .layer-man {
   width: 110%;
-  height: 58svh;
-  top: 18.5svh;
+  height: 52svh;
+  top: 22svh;
   left: 50%;
   transform: translateX(-50%);
   object-fit: cover;
 }
 
 .result-Achiever .layer-product {
-  width: 65%;
+  width: 60%;
   height: auto;
-  top: 54svh;
+  top: 56svh;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .result-Achiever .layer-headline {
-  width: 85%;
-  height: 18svh;
-  top: 5svh;
+  width: 90%;
+  height: 22svh;
+  top: 4svh;
 }
 
 .result-Achiever .layer-motivation {
@@ -439,13 +439,13 @@ body {
 
 /* On the Go Hustler */
 .result-Hustler .layer-headline {
-  height: 18svh;
-  width: 85%;
-  top: 5svh;
+  height: 30svh;
+  width: 100%;
+  top: 0svh;
 }
 .result-Hustler .layer-man {
-  top: 22svh;
-  height: 52svh;
+  top: 25svh;
+  height: 46svh;
 }
 .result-Hustler .layer-product {
   top: 61svh;
@@ -459,13 +459,13 @@ body {
 
 /* Comfort Seeker: Larger character */
 .result-Comfort .layer-headline {
-  height: 20svh;
-  width: 90%;
-  top: 4.5svh;
+  height: 25svh;
+  width: 100%;
+  top: 2svh;
 }
 .result-Comfort .layer-man {
-  top: 14svh;
-  height: 68svh;
+  top: 18svh;
+  height: 64svh;
   width: 105%;
 }
 .result-Comfort .layer-product {
@@ -481,25 +481,25 @@ body {
 
 /* Culinary Alchemist */
 .result-Culinary .layer-headline {
-  height: 16svh;
-  width: 80%;
-  top: 5svh;
+  height: 22svh;
+  width: 95%;
+  top: 3svh;
 }
 .result-Culinary .layer-man {
-  top: 21svh;
-  height: 43svh;
+  top: 24svh;
+  height: 38svh;
 }
 .result-Culinary .layer-ingredients {
-  top: 15svh;
+  top: 20svh;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  height: 42svh;
+  width: 70%;
+  height: 32svh;
 }
 .result-Culinary .layer-product {
-  top: 55.5svh;
-  height: 29svh;
-  width: 90%;
+  top: 57svh;
+  height: 28svh;
+  width: 85%;
 }
 .result-Culinary .layer-motivation {
   height: 15svh;
@@ -509,19 +509,19 @@ body {
 
 /* Nostalgic Traditionalist */
 .result-Traditional .layer-headline {
-  height: 22svh;
-  width: 95%;
-  top: 3svh;
+  height: 26svh;
+  width: 100%;
+  top: 2svh;
 }
 .result-Traditional .layer-man {
-  top: 21svh;
-  height: 56svh;
+  top: 25svh;
+  height: 48svh;
 }
 .result-Traditional .layer-product {
-  top: 60svh;
+  top: 62svh;
   left: 65%;
-  width: 65%;
-  height: 28svh;
+  width: 55%;
+  height: 24svh;
 }
 .result-Traditional .layer-motivation {
   height: 16svh;
