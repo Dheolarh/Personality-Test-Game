@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { questionsData } from '../data/questions';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { toPng } from 'html-to-image';
+import { ENABLE_PLAY_COUNT, MAX_PLAY_COUNT } from '../App';
 
 const traitToFolder = {
   'Early Achiever': 'Achiever',
@@ -74,6 +75,18 @@ function ResultScreen({ userData, answers, debugTrait, setDebugTrait, isDebug, o
 
   useEffect(() => {
     fireConfetti();
+
+    if (ENABLE_PLAY_COUNT && !isDebug) {
+      let playCount = localStorage.getItem('playCount');
+      if (playCount === null) {
+        playCount = MAX_PLAY_COUNT;
+      } else {
+        playCount = parseInt(playCount, 10);
+      }
+      if (playCount > 0) {
+        localStorage.setItem('playCount', playCount - 1);
+      }
+    }
   }, []);
 
   const handleShare = async () => {

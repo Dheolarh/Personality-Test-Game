@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { saveUserToSheet } from '../services/db';
+import { ENABLE_PLAY_COUNT, MAX_PLAY_COUNT } from '../App';
 
 const LandingScreen = ({ onStart, onTest, isDebug }) => {
   const [formData, setFormData] = useState({ name: '', phone: '', location: '' });
@@ -20,6 +21,21 @@ const LandingScreen = ({ onStart, onTest, isDebug }) => {
 
   const handleStart = async (e) => {
     e.preventDefault();
+
+    if (ENABLE_PLAY_COUNT) {
+      let playCount = localStorage.getItem('playCount');
+      if (playCount === null) {
+        playCount = MAX_PLAY_COUNT;
+      } else {
+        playCount = parseInt(playCount, 10);
+      }
+
+      if (playCount <= 0) {
+        setErrorMsg("You've exhausted your play count.");
+        setIsWarning(false);
+        return;
+      }
+    }
 
     const trimmedName = formData.name.trim();
     const nameRegex = /^[a-zA-Z]{3,}\s+[a-zA-Z]{3,}(\s+[a-zA-Z]{3,})?$/;

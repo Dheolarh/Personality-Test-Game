@@ -4,7 +4,12 @@ import QuestionnaireScreen from './screens/QuestionnaireScreen';
 import ResultScreen from './screens/ResultScreen';
 import { questionsData, resultImages } from './data/questions';
 
+
+// --- CONFIGURATION ---
 const IS_DEBUG = false;
+export const ENABLE_PLAY_COUNT = true;
+export const MAX_PLAY_COUNT = 1;
+// ---------------------
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('landing');
