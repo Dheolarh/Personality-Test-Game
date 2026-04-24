@@ -459,9 +459,10 @@ body {
 
 /* Comfort Seeker: Larger character */
 .result-Comfort .layer-headline {
-  height: 25svh;
-  width: 100%;
-  top: 2svh;
+  height: 22svh;
+  width: 95%;
+  top: 8svh;
+  left: 45%;
 }
 .result-Comfort .layer-man {
   top: 18svh;
